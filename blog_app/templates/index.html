@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My blog app is developed using Flask</title>
+    <link rel="stylesheet" href="../static/css/index.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="main-title">Мой Прогресс</h1>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#about">О себе</a></li>
+                    <li><a href="#skills">Навыки</a></li>
+                    <li><a href="#progress">Прогресс</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <section id="about" class="section about-section">
+            <div class="container">
+                <h2 class="section-title">О себе</h2>
+                <div class="about-content">
+                    <img src="../static/img/foto.jpg"
+                         alt="Мое фото" class="profile-image">
+                    <div class="about-text">
+                        <p>Привет! Я начинающий Python разработчик, активно изучающий программирование.</p>
+                        <p>Уже освоил основы Python, Git, PostgreSQL. В настоящий момент активно изучаю фреймворк Flask, HTML/CSS.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section skills-section">
+            <div class="container">
+                <h2 class="section-title">Мои Навыки</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h3>Python</h3>
+                        <p>Базовый уровень</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Git</h3>
+                        <p>Базовый уровень</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>PostgreSQL</h3>
+                        <p>Базовый уровень</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Flask</h3>
+                        <p>Начальный уровень</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>HTML/CSS</h3>
+                        <p>Начальный уровень</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Работа с ОС Linux</h3>
+                        <p>Базовый уровень</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Selenium</h3>
+                        <p>Базовый уровень</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Postman</h3>
+                        <p>Базовый уровень</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="progress" class="section progress-section">
+            <div class="container">
+                <h2 class="section-title">Прогресс по Дисциплинам</h2>
+                <div class="table-container">
+                    <table class="progress-table">
+                        <thead>
+                            <tr>
+                                <th>Дисциплина</th>
+                                <th>Прохождение темы</th>
+                                <th>Домашние задания</th>
+                                <th>Комментарии</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for discipline in disciplines %}
+                            <tr>
+                                <td class="discipline-name">{{ discipline.name }}</td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: {{ discipline.completion }};"></div>
+                                        <span class="progress-text">{{ discipline.completion }}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill homework" style="width: {{ discipline.homework }};"></div>
+                                        <span class="progress-text">{{ discipline.homework }}</span>
+                                    </div>
+                                </td>
+                                <td class="comments">{{ discipline.comments }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Мой Блог. Все права защищены.</p>
+        </div>
+    </footer>
+</html>
+
+
+
+
+
