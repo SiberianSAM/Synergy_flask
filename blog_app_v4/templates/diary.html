@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Дневник программиста{% endblock %}
+
+{% block main_title %}Дневник программиста{% endblock %}
+
+{% block content %}
+    <section class="section diary-section">
+        <div class="container">
+            <h2 class="section-title">Мой дневник</h2>
+
+            <div class="diary-form-container">
+                <form class="diary-form" method="POST" action="{{ url_for('add_entry') }}">
+                    <h3>Добавить новую запись</h3>
+
+                    <div class="form-group">
+                        <label for="title">Заголовок записи:</label>
+                        <input type="text" id="title" name="title" required
+                               placeholder="Введите заголовок...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subtitle">Подзаголовок (необязательно):</label>
+                        <input type="text" id="subtitle" name="subtitle"
+                               placeholder="Введите подзаголовок..." maxlength="15">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Текст записи:</label>
+                        <textarea id="content" name="content" rows="5" required
+                                  placeholder="Расскажите о своих мыслях, идеях или достижениях..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-add">Добавить запись</button>
+                </form>
+            </div>
+
+            <div class="entries-container">
+                <h3>Мои записи ({{ entries|length }})</h3>
+
+                {% if entries %}
+                    <div class="entries-grid">
+                        {% for entry in entries%}
+                        <div class="entry-card">
+                            <div class="entry-header">
+                                <h4 class="entry-title">{{ entry.title }}</h4>
+                            </div>
+
+                            {% if entry.subtitle %}
+                            <div class="entry-subtitle">
+                                {{ entry.subtitle }}
+                            </div>
+                            {% endif %}
+
+                            <div class="entry-content">
+                                <p>{{ entry.text }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="no-entries">
+                        <p>Пока нет записей. Добавьте первую запись в дневник!</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
