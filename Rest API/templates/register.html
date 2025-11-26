@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Форма регистрации{% endblock %}
+
+{% block main_title %}Форма регистрации{% endblock %}
+
+{% block content %}
+
+    <div class="auth-container">
+        <div class="auth-card">
+
+            <div class="auth-header">
+                <h1 class="auth-title">Регистрация</h1>
+                <p class="auth-subtitle">Создайте аккаунт чтобы начать вести дневник</p>
+            </div>
+
+            <form class="auth-form" method="POST" action="{{ url_for('register') }}">
+                <div class="form-group">
+                    <label for="username" class="form-label">Имя пользователя</label>
+                    <input type="text" id="username" name="username" required
+                           class="form-input"
+                           placeholder="Придумайте имя пользователя"
+                           value="{{ request.form.username if request.form }}">
+                    <div class="form-hint">Минимум 3 символа</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email адрес</label>
+                    <input type="email" id="email" name="email" required
+                           class="form-input"
+                           placeholder="Введите ваш email"
+                           value="{{ request.form.email if request.form }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" id="password" name="password" required
+                           class="form-input"
+                           placeholder="Придумайте пароль">
+                    <div class="form-hint">Минимум 6 символов</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password" class="form-label">Подтвердите пароль</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required
+                           class="form-input"
+                           placeholder="Повторите пароль">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full btn-large">
+                    Зарегистрироваться
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
