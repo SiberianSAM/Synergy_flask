@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Редактировать запись</h2>
+
+    <form method="POST">
+        <div class="mb-3">
+            <label for="title" class="form-label">Заголовок</label>
+            <input type="text" class="form-control" id="title" name="title"
+                   value="{{ entry.title }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="subtitle" class="form-label">Подзаголовок</label>
+            <input type="text" class="form-control" id="subtitle" name="subtitle"
+                   value="{{ entry.subtitle }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="content" class="form-label">Содержание</label>
+            <textarea class="form-control" id="content" name="content"
+                      rows="5" required>{{ entry.text }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">Сохранить изменения</button>
+        <a href="{{ url_for('diary') }}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %}

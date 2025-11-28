@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- 🔥 ЗАГОЛОВОК -->
+            <div class="auth-header">
+                <h1 class="auth-title">Вход в систему</h1>
+                <p class="auth-subtitle">Войдите в свой аккаунт</p>
+            </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash-message {{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form class="auth-form" method="POST" action="{{ url_for('login') }}">
+                <div class="form-group">
+                    <label for="username" class="form-label">Имя пользователя</label>
+                    <input type="text" id="username" name="username" required
+                           class="form-input"
+                           placeholder="Введите имя пользователя"
+                           value="{{ request.form.username if request.form }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" id="password" name="password" required
+                           class="form-input"
+                           placeholder="Введите пароль">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full btn-large">
+                    Войти в аккаунт
+                </button>
+                <div class="auth-links">
+                <p>Нет аккаунта? <a href="{{ url_for('register') }}" class="auth-link">Зарегистрируйтесь здесь</a></p>
+                <p><a href="{{ url_for('home') }}" class="auth-link">← Вернуться на главную</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

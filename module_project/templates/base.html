@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My blog app is developed using Flask{% endblock %}</title>
+    <link rel="stylesheet" href="../static/css/index.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="main-title">{% block main_title %}Мой Прогресс{% endblock %}</h1>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="{{ url_for('index') }}">Главная</a></li>
+                    <li><a href="{{ url_for('diary') }}">Дневник программиста</a></li>
+                    <li><a href="{{ url_for('index') }}#about">О себе</a></li>
+                    <li><a href="{{ url_for('index') }}#skills">Навыки</a></li>
+                    <li><a href="{{ url_for('index') }}#progress">Прогресс</a></li>
+
+                    {% if session.user_id %}
+                        <li><span class="user-welcome">Привет, {{ session.username }}!</span></li>
+                        <li><a href="{{ url_for('logout') }}" class="logout-link">Выйти</a></li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Мой Блог. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>

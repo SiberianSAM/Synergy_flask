@@ -5,3 +5,4 @@
 # blog app_v3 - работа с sqlalchemy, миграциями в БД
 # blog app_v4 - Добавлена авторизация
 # Rest API - Добавлены REST API к БД Notes
+# Module project - Доработка приложения blog_app_v4
